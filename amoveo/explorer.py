@@ -21,7 +21,7 @@ class AmoveoExplorer:
     def account_txs(self, address):
         """
         Get transactions by address.
-        :param tx_hash:
+        :param address: VEO pub key
         :return:
         """
         url = urljoin(self.host, "txlist")
