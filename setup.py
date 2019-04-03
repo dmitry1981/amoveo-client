@@ -4,13 +4,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='amoveo-client',
-    # *IMPORTANT*: Don't manually change the version here. Use the 'bumpversion' utility.
-    version='0.1.4',
+    version='0.1.5',
     description='amoveo python client',
     long_description_markdown_filename='README.md',
     author='Dmitry Zhidkih',
     author_email='zhidkih.dmitry@gmail.com',
-    # url='https://github.com/',
+    url='https://github.com/dmitry1981/amoveo-client',
     include_package_data=True,
     install_requires=[
         'requests',
