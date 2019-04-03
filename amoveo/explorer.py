@@ -17,3 +17,15 @@ class AmoveoExplorer:
         r.raise_for_status()
         tx = r.json()['result']
         return tx
+
+    def account_txs(self, address):
+        """
+        Get transactions by address.
+        :param tx_hash:
+        :return:
+        """
+        url = urljoin(self.host, "txlist")
+        r = requests.get(url, params={'address': address})
+        r.raise_for_status()
+        tx = r.json()['result']
+        return tx

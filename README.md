@@ -71,6 +71,11 @@ Get transaction by tx hash
 amoveo.get_tx(tx_hash)
 ```
 
+Get account transactions
+```
+amoveo.account_txs(address)
+```
+
 Send transaction. Call `Amoveo.send`. It determines tx type needed, forms the transaction payload, serializes it and sends to full node.
 Please note, there should be at least 1 satoshi left on the account to make spending transaction correct (i.e. you can’t transfer the whole amount, just amount - 1 satoshi, excluding fee).
 ```

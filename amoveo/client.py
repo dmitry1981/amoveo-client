@@ -11,6 +11,7 @@ class AmoveoClient:
         """
         explorer = AmoveoExplorer(conf.get("EXPLORER"))
         self.get_tx = explorer.get_tx
+        self.account_txs = explorer.account_txs
 
         node = AmoveoNode(conf.get("NODE"))
         self.last_block = node.last_block
