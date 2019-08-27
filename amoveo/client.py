@@ -31,7 +31,7 @@ class AmoveoClient:
         :return:
         """
         res = self.account(address)
-        if res == "empty":
+        if res == 0:
             return 0
         else:
             try:

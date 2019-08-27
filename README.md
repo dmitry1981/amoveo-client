@@ -101,10 +101,35 @@ Pending transactions. Response contains current pending transactions. Unfortunat
 ```
 amoveo_client.pending_tx()
 ```
+```
+curl --request GET \
+        --url http://amoveo.node/ \
+        --header 'content-type: application/json' \
+        --data '["mempool"]'
+```
+
 
 Other methods
 ```
 amoveo_client.account(address)
+
 ```
 
+account not funded
+```
+curl --request GET \
+    --url http://amoveo.node/ \
+    --header 'content-type: application/json' \
+    --data '["account", "BIkj6yP84pYqRP8LDjKnO6Ae4cQSP5NiX6x5jRpWUcYWyR87uM6pf90ZhAH/J0g3Fm35O+Kf6a0mAqzsuvTPmyU="]'
+> ["ok",0]  # account not funded yet.
+```
 
+account funded
+```
+curl --request GET \
+    --url http://amoveo.node/ \
+    --header 'content-type: application/json' \
+    --data '["account", "BH8sPvGR4DqpnasL3zVJ9C068bPHbtBEOLV4rhEQvqt1Y8NH9ceXFozaFctuSaAtgb0SZ5kiuPxZZY6jGM+BDHw="]'
+> ["ok",["acc",74679577,25,"BH8sPvGR4DqpnasL3zVJ9C068bPHbtBEOLV4rhEQvqt1Y8NH9ceXFozaFctuSaAtgb0SZ5kiuPxZZY6jGM+BDHw=",0,"B2onx55azio9R/ndLoPk/26ohys8Ihj2bJK4m1XzZWA="]]
+[result, [request type, balance, ...]]
+```
