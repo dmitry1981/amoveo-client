@@ -1,4 +1,5 @@
-from base64 import b64decode
+from base64 import b64encode, b64decode
+import hashlib
 
 
 def int_to_string(x):
@@ -76,3 +77,11 @@ def serialize(data):
         return integer_to_array(0, 1) + integer_to_array(len(rest), 4) + rest
     else:
         return integer_to_array(0, 1) + integer_to_array(len(data), 4) + data
+
+
+def get_tx_hash(tx_data):
+    serialized_tx = serialize(tx_data)
+
+    txhash = hashlib.sha256(bytes(serialized_tx)).digest()
+
+    return b64encode(txhash).decode()

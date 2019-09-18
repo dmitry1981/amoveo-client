@@ -1,6 +1,7 @@
 from .node import AmoveoNode
 from .explorer import AmoveoExplorer
 from .sign import sign, generate_wallet
+from .serializer import get_tx_hash
 
 
 class AmoveoClient:
@@ -152,7 +153,7 @@ class AmoveoClient:
 
             if tx[0] in ["spend", "create_acc_tx"]:
                 txs.append({
-                    'hash': hashes[ind] if hashes else None,
+                    'hash': hashes[ind] if hashes else get_tx_hash(tx),
                     'sign': tx_sign,
                     'from': tx[1],
                     'to': tx[4],
