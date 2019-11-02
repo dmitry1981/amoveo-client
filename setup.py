@@ -14,7 +14,7 @@ setup(
     install_requires=[
         'requests',
         'fastecdsa==1.6.5',
-        'ecdsa==0.13',
+        'ecdsa==0.13.3',
     ],
     # setup_requires=['setuptools-markdown'],
     python_requires='>=3.6,<4',
