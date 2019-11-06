@@ -12,9 +12,9 @@ setup(
     url='https://github.com/dmitry1981/amoveo-client',
     include_package_data=True,
     install_requires=[
-        'requests',
-        'fastecdsa==1.6.5',
-        'ecdsa==0.13',
+        'requests==2.21.0',
+        'fastecdsa==1.7.5',
+        'ecdsa==0.13.3',
     ],
     # setup_requires=['setuptools-markdown'],
     python_requires='>=3.6,<4',
