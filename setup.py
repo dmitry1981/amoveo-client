@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='amoveo-client',
-    version='0.1.8',
+    version='0.1.9',
     description='amoveo python client',
     long_description_markdown_filename='README.md',
     author='Dmitry Zhidkih',
