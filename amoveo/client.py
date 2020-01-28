@@ -2,6 +2,12 @@ from .node import AmoveoNode
 from .explorer import AmoveoExplorer
 from .sign import sign, generate_wallet
 from .serializer import get_tx_hash
+from decimal import Decimal
+from .excepts import NotEnoughMoney
+import logging
+
+
+logger = logging.getLogger('amoveo')
 
 
 class AmoveoClient:
@@ -161,3 +167,37 @@ class AmoveoClient:
                 })
         return txs
 
+    def send(self, _from, private_key, _to, value):
+        """
+        Send `value` coins.
+        :param _from: (str) address
+        :param private_key: (str) private key
+        :param _to: (str) address
+        :param value: value as is
+        :return:
+        """
+        value = int(value * Decimal(1e8))
+
+        # get balance
+        balance = self.balance(_from, in_satoshi=True)
+
+        # find out tx type
+        #       - if wallet is empty - create_account_tx
+        #       - else spend_tx
+        res = self.account(_to)
+        tx_typ = "create_account_tx" if res in ["empty", 0] else "spend_tx"
+        fee = 152168 if res in ["empty", 0] else 61657
+        value_with_fee = value + fee
+
+        if balance - value_with_fee < 0:
+            raise NotEnoughMoney(f"Balance on {_from} is not enough for transaction")
+
+        logger.info(f"Prepare VEO tx, tx_typ: {tx_typ}, value: {value}, fee: {fee}, _from: {_from}, _to: {_to}")
+        res = self.prepare_tx(tx_typ, value, fee, _from, _to)
+
+        # sign transaction
+        sign_str = self.sign(res, private_key)
+
+        # send transaction
+        transaction_id = self.send_tx(res, sign_str)
+        return transaction_id
