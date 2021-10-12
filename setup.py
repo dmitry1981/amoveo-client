@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'requests==2.21.0',
-        'fastecdsa==1.7.5',
+        'fastecdsa==2.1.2',
         'ecdsa==0.13.3',
     ],
     # setup_requires=['setuptools-markdown'],
